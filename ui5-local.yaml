@@ -1,0 +1,90 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: colorformula
+type: application
+framework:
+  name: SAPUI5
+  version: 1.140.0
+  libraries:
+    - name: sap.m
+    - name: sap.ui.core
+    - name: sap.ushell
+    - name: themelib_sap_horizon
+server:
+  customMiddleware:
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        flp:
+          theme: sap_horizon
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertErrors: false
+        backend:
+          - url: https://my421040-api.s4hana.cloud.sap
+            authenticationType: SAMLAssertion
+            destination: my421040_cust
+            path: /sap
+          - url: https://my421040-api.s4hana.cloud.sap
+            authenticationType: SAMLAssertion
+            destination: my421040_cust
+            path: /sap/opu/odata/sap/ZSB_YCCODE_1/
+          - url: https://my421040-api.s4hana.cloud.sap
+            authenticationType: SAMLAssertion
+            destination: my421040_cust
+            path: /sap/opu/odata/sap/ZSB_INSPECTIONLOT_F4/
+          - url: https://my421040-api.s4hana.cloud.sap
+            authenticationType: SAMLAssertion
+            destination: my421040_cust
+            path: /sap/opu/odata/sap/ZSB_COA_IH2P/
+          - url: https://my421040-api.s4hana.cloud.sap
+            authenticationType: SAMLAssertion
+            destination: my421040_cust
+            path: /sap/opu/odata/sap/ZCE_ZCOUNT_HEAD_SRVB/
+          - url: https://my421040-api.s4hana.cloud.sap
+            authenticationType: SAMLAssertion
+            destination: my421040_cust
+            path: /sap/opu/odata/sap/ZSB_NCLCOA_LONGTEXT/
+          - url: https://my421040-api.s4hana.cloud.sap
+            authenticationType: SAMLAssertion
+            destination: my421040_cust
+            path: /sap/opu/odata/sap/ZSB_NCLCOA_CODEGROUP/
+    - name: sap-fe-mockserver
+      beforeMiddleware: csp
+      configuration:
+        mountPath: /
+        services:
+          - urlPath: /sap/opu/odata/sap/ZSB_YCCODE_1
+            metadataPath: ./webapp/localService/ZSB_YCCODE_1/metadata.xml
+            mockdataPath: ./webapp/localService/ZSB_YCCODE_1/data
+            generateMockData: true
+          - urlPath: /sap/opu/odata/sap/ZSB_INSPECTIONLOT_F4
+            metadataPath: ./webapp/localService/ZSB_INSPECTIONLOT_F4/metadata.xml
+            mockdataPath: ./webapp/localService/ZSB_INSPECTIONLOT_F4/data
+            generateMockData: true
+          - urlPath: /sap/opu/odata/sap/ZSB_COA_IH2P
+            metadataPath: ./webapp/localService/ZSB_COA_IH2P/metadata.xml
+            mockdataPath: ./webapp/localService/ZSB_COA_IH2P/data
+            generateMockData: true
+          - urlPath: /sap/opu/odata/sap/ZCE_ZCOUNT_HEAD_SRVB
+            metadataPath: ./webapp/localService/ZCE_ZCOUNT_HEAD_SRVB/metadata.xml
+            mockdataPath: ./webapp/localService/ZCE_ZCOUNT_HEAD_SRVB/data
+            generateMockData: true
+          - urlPath: /sap/opu/odata/sap/ZSB_NCLCOA_LONGTEXT
+            metadataPath: ./webapp/localService/ZSB_NCLCOA_LONGTEXT/metadata.xml
+            mockdataPath: ./webapp/localService/ZSB_NCLCOA_LONGTEXT/data
+            generateMockData: true
+          - urlPath: /sap/opu/odata/sap/ZSB_NCLCOA_CODEGROUP
+            metadataPath: ./webapp/localService/ZSB_NCLCOA_CODEGROUP/metadata.xml
+            mockdataPath: ./webapp/localService/ZSB_NCLCOA_CODEGROUP/data
+            generateMockData: true
+        annotations: []

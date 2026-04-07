@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns:ui="sap.ui.table" xmlns="sap.m" xmlns:core="sap.ui.core">
+
+<Dialog id="excelTableFragment"
+        title="Long Text Excel Data"
+        contentWidth="90%"
+        contentHeight="60%"
+        draggable="true"
+        resizable="true">
+
+    <ui:Table  id="excelTableId" rows="{UploadModel>/Datass}" selectionMode="MultiToggle" >
+        
+        <ui:columns>        
+
+            <ui:Column width="15%" >
+                <Label text="Plant"  />
+                <ui:template>
+                    <Input  value="{UploadModel>InspectionSpecificationPlant}" />
+                </ui:template>
+            </ui:Column>
+
+            <ui:Column width="20%" >
+                <Label text="Mic No" />
+                <ui:template>
+                    <Input value="{UploadModel>Micno}" />
+                </ui:template>
+            </ui:Column>
+
+            <ui:Column width="20%" >
+                <Label text="Inspection Method" />
+                <ui:template>
+                    <Input value="{UploadModel>Inspectionmethod}"  />	
+                </ui:template>
+            </ui:Column>
+
+            <ui:Column >
+                <Label text="Inspection Long Text" />
+                <ui:template>
+                    <Input value="{UploadModel>Inspectionspeclongtext}" />	
+                </ui:template>
+            </ui:Column>
+
+        </ui:columns>
+    </ui:Table>
+    
+    <footer>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button text="Save" press=".onLongTextUpload_SavePress" class="sapUiTinyMargin" type="Emphasized" />
+            <Button text="Cancel" press=".onLongTextUpload_CancelPress" class="sapUiTinyMargin" type="Emphasized" />    
+        </OverflowToolbar>
+    </footer>
+</Dialog>
+
+</core:FragmentDefinition>

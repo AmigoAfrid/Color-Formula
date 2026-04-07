@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
+	<ValueHelpDialog supportMultiselect="false"  title=" Mic No." ok=".onMicNoValueOkPress" cancel=".onMicNoValueCancelPress" afterClose=".onMicNoValueAfterClose"
+	 				 supportRanges="false" key="InspectionSpecification" descriptionKey="">
+		<filterBar>
+			<fb:FilterBar  advancedMode="true" search=".onMicNoFilterBarSearch" isRunningInValueHelpDialog="true">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Inspection Specification." label="Inspection Specification." visibleInFilterBar="true">
+						<fb:control>
+								<m:Input name="Inspection Specification." showSuggestion="true" showValueHelp="false"  
+										 suggestionItems="{ path: 'oJSONModelM>/Datas', sorter: { path: 'InspectionSpecification' }}">
+								<core:Item key="{oJSONModelM>InspectionSpecification}" text="{oJSONModelM>InspectionSpecification}" />
+							</m:Input>
+						</fb:control>
+					</fb:FilterGroupItem>
+				
+
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+		
+	</ValueHelpDialog>
+</core:FragmentDefinition> 

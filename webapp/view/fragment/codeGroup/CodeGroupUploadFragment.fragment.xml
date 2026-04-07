@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns:ui="sap.ui.table" xmlns="sap.m" xmlns:core="sap.ui.core">
+
+<Dialog id="excelTableCodeGroupFragment"
+        title="Code Group Excel Data"
+        contentWidth="90%"
+        contentHeight="60%"
+        draggable="true"
+        resizable="true">
+
+    <ui:Table  id="excelTableCodeGroupId" rows="{UploadCodeGroupModel>/Datass}" selectionMode="MultiToggle" >
+        
+        <ui:columns>        
+
+            <ui:Column width="20%" >
+                <Label text="Code Group" />
+                <ui:template>
+                    <Input value="{UploadCodeGroupModel>CodeGroup}" />
+                </ui:template>
+            </ui:Column>
+
+            <ui:Column width="20%" >
+                <Label text="Code" />
+                <ui:template>
+                    <Input value="{UploadCodeGroupModel>Code}"  />	
+                </ui:template>
+            </ui:Column>
+
+            <ui:Column >
+                <Label text="Code Short Text" />
+                <ui:template>
+                    <Input value="{UploadCodeGroupModel>Codeshorttxt}" />	
+                </ui:template>
+            </ui:Column>
+
+        </ui:columns>
+    </ui:Table>
+    
+    <footer>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button text="Save" press=".onCodeGroupUpload_SavePress" class="sapUiTinyMargin" type="Emphasized" />
+            <Button text="Cancel" press=".onCodeGroupUpload_CancelPress" class="sapUiTinyMargin" type="Emphasized" />    
+        </OverflowToolbar>
+    </footer>
+</Dialog>
+
+</core:FragmentDefinition>

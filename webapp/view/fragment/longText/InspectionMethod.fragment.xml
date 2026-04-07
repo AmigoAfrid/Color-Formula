@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
+	<ValueHelpDialog supportMultiselect="false"  title=" Mic No." ok=".onInspectionMethodValueOkPress" cancel=".onInspectionMethodValueCancelPress" afterClose=".onInspectionMethodValueAfterClose"
+	 				 supportRanges="false" key="Micno" descriptionKey="">
+		<filterBar>
+			<fb:FilterBar  advancedMode="true" search=".onInspectionMethodFilterBarSearch" isRunningInValueHelpDialog="true">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Inspection Method." label="Mic No." visibleInFilterBar="true">
+						<fb:control>
+								<m:Input name="Mic No." showSuggestion="true" showValueHelp="false" suggestionItems="{ path: 'ZSB_NCLCOA_LONGTEXT>/ZC_NCL_MICNO_F4', sorter: { path: 'Micno' }}">
+								<core:Item key="{ZSB_NCLCOA_LONGTEXT>Inspectionmethod}" text="{ZSB_NCLCOA_LONGTEXT>Micno}" />
+							</m:Input>
+						</fb:control>
+					</fb:FilterGroupItem>
+				
+
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+		
+	</ValueHelpDialog>
+</core:FragmentDefinition> 

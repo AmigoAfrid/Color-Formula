@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
+	<ValueHelpDialog supportMultiselect="false"  title="Code." ok=".onCodeValueOkPress" cancel=".onCodeValueCancelPress" 
+					 afterClose=".onCodeValueAfterClose" supportRanges="false" key="Code" 
+					 descriptionKey=""  >
+		<filterBar>
+			<fb:FilterBar advancedMode="true" search=".onCodeFilterBarSearch" isRunningInValueHelpDialog="true"  >
+				<fb:filterGroupItems>
+
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Code" label="Code" visibleInFilterBar="true" >
+						<fb:control >
+									<m:Input name="Code" showSuggestion="true" showValueHelp="false"
+											 suggestionItems="{ path: 'oJSONModelC>/Datas',sorter: { path: 'Code' }}"> 
+								<core:Item key="{oJSONModelC>Code}" text="{oJSONModelC>Code}" />
+							</m:Input>
+						</fb:control>
+					</fb:FilterGroupItem>				
+
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+		
+	</ValueHelpDialog>
+</core:FragmentDefinition> 

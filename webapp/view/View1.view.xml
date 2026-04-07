@@ -1,0 +1,537 @@
+<mvc:View controllerName="colorformula.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" 
+	xmlns:t="sap.ui.table"
+	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout" 
+	xmlns:u="sap.ui.unified"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:svm="sap.ui.comp.smartvariants"
+	xmlns:f="sap.f"
+	xmlns:tnt="sap.tnt" >
+    <Page id="page" title="{i18n>title}">
+  
+        <IconTabBar id="idIconTabBar" class="sapUiResponsiveContentPadding" expandable="false" backgroundDesign="Solid" 
+					headerMode="Inline"   >
+  
+            <!-- Color Formula Tab -->
+            <items>
+                <IconTabFilter 
+                    text="Certification of Analysis"
+                    key="master"
+					tooltip="Certification of Analysis"
+                    icon="sap-icon://color-fill"
+                    iconColor="Positive">
+
+
+					<!-- Color Formula -->
+
+					<FlexBox alignItems="Start" backgroundDesign="Solid"  >
+							<items>
+								<Panel>
+									<content>
+									
+									
+								<layout:VerticalLayout >
+									<layout:HorizontalLayout>
+
+										<layout:VerticalLayout visible="true" class=" sapUiTinyMargin" >
+											<Label text="Inspection Lot." tooltip="Enter the Inspection Lot No" design="Bold"  />
+											<Input maxLength="10" required="true" width="11.5rem" id="idmaterialdocument" 
+												placeholder="Select Inspection Lot" editable="true" enabled="true" 
+												showValueHelp="true" valueHelpRequest=".onValueHelpRequest" />
+										</layout:VerticalLayout>
+
+										<layout:VerticalLayout visible="true" class=" sapUiTinyMargin" >
+											<Label text="Plant No." tooltip="Enter the Plant No." design="Bold"  />
+											<Input maxLength="10" required="true" width="11.5rem" id="idPlantInput" placeholder="Select Plant" 
+												editable="true" enabled="true"   showValueHelp="true" valueHelpRequest=".onValueHelpRequestPlant" />
+                                    
+										</layout:VerticalLayout>
+
+										<layout:VerticalLayout visible="true" class=" sapUiTinyMargin"  >
+											<Label text="Date:" tooltip="Enter the Date" design="Bold"   />
+											<DatePicker  id="DP2" valueFormat="yyyy-MM-dd" displayFormat="dd-MM-yyyy" tooltip="DatePicker" width="11.5rem" />
+
+										</layout:VerticalLayout>
+
+										<layout:VerticalLayout visible="true" class=" sapUiTinyMargin"  >
+											<Label text="A.R. No" tooltip="Enter the A.R No." design="Bold"  />
+											<Input id="ARNO" editable="true" placeholder="Enter A.R No."    width="11.5rem"/>
+										</layout:VerticalLayout>
+
+										<layout:VerticalLayout visible="true" class=" sapUiTinyMargin"  >
+											<Label text="STP No" tooltip="Enter the STP No" design="Bold"  />
+											<Input id="STPNO" editable="true" placeholder="Enter STP No"    width="11.5rem"/>
+										</layout:VerticalLayout>
+																	
+									
+									</layout:HorizontalLayout>
+
+									<layout:HorizontalLayout>
+
+										<layout:VerticalLayout visible="true" class=" sapUiTinyMargin"  >
+											<Label text="Cap Pantone Code" tooltip="Enter the Cap Pantone Code" design="Bold" />
+											<Input id="CapPan" editable="true" placeholder="Enter Cap Pantone Code"    width="11.5rem"/>
+										</layout:VerticalLayout>
+
+										<layout:VerticalLayout visible="true" class=" sapUiTinyMargin" >
+											<Label text="Body Pantone Code" tooltip="Enter the Body Pantone Code" design="Bold"  />
+											<Input id="Bodpan" editable="true" placeholder="Enter Body Pantone Code"    width="11.5rem"/>
+										</layout:VerticalLayout>
+
+										<layout:VerticalLayout visible="true" class=" sapUiTinyMargin" >
+											<Label text="Quantity" tooltip="Enter the Quantity" design="Bold"  />
+											<Input id="Quantityid" editable="true" placeholder="Enter Quantity"    width="11.5rem"/>
+										</layout:VerticalLayout>
+
+										<layout:VerticalLayout class="sapUiTinyMargin" >
+											<Label text="Size :" tooltip="Size :" design="Bold" class="sapUiSmallMarginEnd" />
+											<ComboBox id="Conclus"
+													  placeholder="Size"
+													  width="8.5rem"
+													  selectionChange=".onPriorityChange">
+												<items>
+												<core:Item key="#00" text="#00" />
+												<core:Item key="#0EL" text="#0EL" />
+												<core:Item key="#0" text="#0" />
+												<core:Item key="#1" text="#1" />
+												<core:Item key="#2" text="#2" />
+												<core:Item key="#3" text="#3" />
+												<core:Item key="#4" text="#4" />
+												</items>
+											</ComboBox>
+
+										</layout:VerticalLayout>
+
+										<layout:VerticalLayout class="sapUiTinyMargin" >
+											<Button text="Clear I/P" tooltip="Clear inputs" type="Attention"  icon="sap-icon://write-new" class="sapUiSmallMargin" press="onClearInputsPress"  />
+											
+										</layout:VerticalLayout>
+
+
+									</layout:HorizontalLayout>	
+
+
+									<layout:HorizontalLayout>
+
+										<layout:VerticalLayout visible="true" class=" sapUiTinyMargin" >
+											<Label text="Remarks" tooltip="Enter the A.R No." design="Bold"  />
+											<RadioButtonGroup id="rbg2" columns="1"  class="myCustomVBoxClassCOA_1" select="onRadioSelect" >
+												<RadioButton id="RB3-8" text="IP-1P" />
+												<RadioButton id="RB3-9" text="IP-2P" />
+												<RadioButton id="RB3-10" text="IH-1P" />
+												<RadioButton id="RB3-11" text="IH-2P" />
+											</RadioButtonGroup>
+										</layout:VerticalLayout>
+
+										<layout:VerticalLayout visible="true"  class="sapUiResponsiveMargin" >
+											<Button text="Print" tooltip="Print" type="Emphasized" press="OnPrint"  />
+										</layout:VerticalLayout>
+
+										<layout:VerticalLayout class="sapUiLargeMargin" />
+										<layout:VerticalLayout class="sapUiLargeMargin" />
+										<layout:VerticalLayout class="sapUiMediumMargin" />
+
+										<layout:VerticalLayout class="sapUiResponsiveMarginLeft">
+											<Image 
+												id="imgNCL"
+												src="{= sap.ui.require.toUrl('colorformula/util/NCL-3.jpg') }" 
+												width="560px"
+												height="180px"
+												decorative="false"
+												tooltip="NCL" />
+										</layout:VerticalLayout>
+
+									
+									</layout:HorizontalLayout>								
+								
+								
+								</layout:VerticalLayout>
+
+									</content>
+								</Panel>
+							</items>
+						</FlexBox>
+					
+                    
+                </IconTabFilter>
+                
+                
+
+                        <!-- Master Color Tab -->
+                <IconTabFilter
+                        text="Master Color Formula"
+                        key="master"
+						tooltip="Color Formula"
+                        icon="sap-icon://database"
+                        iconColor="Negative"    >
+
+                        <!-- Master color -->
+
+						<t:Table enableBusyIndicator="true" threshold="100"  rowSelectionChange="onRowSelect" rows="{TabModel>/Datass}" 
+								 selectionBehavior="Row" fixedColumnCount="4" selectionMode="Multi" id="idtable"  enableSelectAll="true"
+								 	
+								 rowMode="Fixed" width="100%"  >
+					<t:extension>
+						<OverflowToolbar  style="Clear">
+							<Title  text=" Colors Master"/>
+							<ToolbarSpacer width="30rem"/>  	
+							<!-- <Button text="Update" icon="sap-icon://arrow-right" press="onUpdate" /> -->
+							<ToolbarSpacer/>
+							
+							<u:FileUploader
+								id="fileUploader"
+								name="excelUploader"
+								tooltip="Upload your file to the table"
+								change="onColorFormulaUploadChange"
+								fileType="xlsx,xls"
+								placeholder="Choose Excel file..."
+								style="Emphasized"/>
+						
+							<Button text="Upload" press="onColorFormulaUploadPress" type="Accept" icon="sap-icon://upload" />
+							
+
+							<Button text="Add" icon="sap-icon://add" press="OnRowAdd" />
+                   			<Button text="Delete"  id="idmultidelete" icon="sap-icon://delete" press="onDeleteRow" />
+
+						</OverflowToolbar>
+					</t:extension>
+					<t:columns>
+
+					 	<t:Column width="8rem" sortProperty="createtime"  filterProperty="color" tooltip="Color" > <!-- 0 -->
+							<Label  text="Color" />
+							<t:template>
+								<Input  value="{TabModel>color}" change="zColor_Formula_Input"   />
+							</t:template>
+						</t:Column>
+
+					 	<t:Column width="8rem" tooltip="Color1"><!--  1-->
+							<Label  text="Color1" />
+							<t:template>
+							<Input  value="{TabModel>color1}" />
+							</t:template>
+						</t:Column>
+
+					 	<t:Column width="8rem"  tooltip="Colorants"><!--  2-->
+							<Label  text="Colorants" />
+							<t:template>
+							<Input  value="{TabModel>colorants}" change="zColor_Formula_Input" />
+							</t:template>
+						</t:Column>
+
+						<t:Column width="8rem"  tooltip="ECC No"><!-- 4 -->
+							<Label  text="ECC No" />
+							<t:template>
+								<Input value="{TabModel>eccno}" type="Number"   />
+							</t:template>
+						</t:Column>
+
+					 	<t:Column width="8rem" tooltip="CI No"><!--  5-->
+							<Label  text="C I No" />
+							<t:template>
+								<Input value="{TabModel>cino}" type="Number"  />
+							</t:template>
+						</t:Column>
+
+					 	<t:Column width="8rem"  tooltip="% of color"><!--  6-->
+							<Label  text="% of color" />
+							<t:template>
+								<Input value="{TabModel>percofcolor}" type="Number" liveChange="onNumberInputLiveChange" />
+							</t:template>
+						</t:Column>
+						
+					 	<t:Column width="8rem" tooltip="size 00 Cap wt"><!-- 7 -->
+							<Label  text="size 00 Cap wt" />
+							<t:template>
+								<Input value="{TabModel>size00CaPwt}" liveChange="onNumberInputLiveChange" />
+							</t:template>
+						</t:Column>
+
+                        <t:Column width="8rem" tooltip="size 00 Body wt"><!-- 8 -->
+							<Label  text="size 00 Body wt" />
+							<t:template>
+								<Input value="{TabModel>size00BodyWt}" liveChange="onNumberInputLiveChange" />
+							</t:template>
+						</t:Column>
+
+                        <t:Column width="8rem"  tooltip="size 0el Cap wt"><!-- 9 -->
+							<Label  text="size 0el Cap wt" />
+							<t:template>
+								<Input value="{TabModel>size0elCapWt}" liveChange="onNumberInputLiveChange" />
+							</t:template>
+						</t:Column>
+
+                        <t:Column width="8rem"  tooltip="size 0el Body wt"><!-- 10 -->
+							<Label  text="size 0el Body wt" />
+							<t:template>
+								<Input value="{TabModel>size0elBodyWt}" liveChange="onNumberInputLiveChange"  />
+							</t:template>
+						</t:Column>
+
+                         <t:Column width="8rem"  tooltip="size 0 Cap wt"><!-- 11 -->
+							<Label  text="size 0 Cap wt" />
+							<t:template>
+								<Input value="{TabModel>size0CapWt}" liveChange="onNumberInputLiveChange"  />
+							</t:template>
+						</t:Column>
+
+                        <t:Column width="8rem"  tooltip="size 0 Body Wt"><!-- 12 -->
+							<Label  text="size 0 Body Wt" />
+							<t:template>
+								<Input value="{TabModel>size0BodyWt}" liveChange="onNumberInputLiveChange"  />
+							</t:template>
+						</t:Column>
+
+                         <t:Column width="8rem"  tooltip="size 1 Cap wt"><!-- 13 -->
+							<Label  text="size 1 Cap wt" />
+							<t:template>
+								<Input value="{TabModel>size1CapWt}" liveChange="onNumberInputLiveChange" />
+							</t:template>
+						</t:Column>
+
+                        <t:Column width="8rem"  tooltip="size 1 Body Wt"><!-- 14 -->
+							<Label  text="size 1 Body Wt" />
+							<t:template>
+								<Input value="{TabModel>size1BodyWt}" liveChange="onNumberInputLiveChange" />
+							</t:template>
+						</t:Column>
+
+                         <t:Column width="8rem"  tooltip="size 2 Cap wt"><!-- 15 -->
+							<Label  text="size 2 Cap wt" />
+							<t:template>
+								<Input value="{TabModel>size2CapWt}" liveChange="onNumberInputLiveChange" />
+							</t:template>
+						</t:Column>
+
+                        <t:Column width="8rem"  tooltip="size 2 Body Wt"><!-- 16 -->
+							<Label  text="size 2 Body Wt" />
+							<t:template>
+								<Input value="{TabModel>size2BodyWt}" liveChange="onNumberInputLiveChange" />
+							</t:template>
+						</t:Column>
+
+                         <t:Column width="8rem"  tooltip="size 3 Cap wt"><!-- 17 -->
+							<Label  text="size 3 Cap wt" />
+							<t:template>
+								<Input value="{TabModel>size3CapWt}" liveChange="onNumberInputLiveChange"  />
+							</t:template>
+						</t:Column>
+
+                        <t:Column width="8rem"  tooltip="size 3 Body Wt"><!-- 18 -->
+							<Label  text="size 3 Body Wt" />
+							<t:template>
+								<Input value="{TabModel>size3BodyWt}" liveChange="onNumberInputLiveChange" />
+							</t:template>
+						</t:Column>
+
+                         <t:Column width="8rem"  tooltip="size 4 Cap wt"><!-- 19 -->
+							<Label  text="size 4 Cap wt" />
+							<t:template>
+								<Input value="{TabModel>size4CapWt}" liveChange="onNumberInputLiveChange" />
+							</t:template>
+						</t:Column>
+
+                        <t:Column width="8rem" tooltip="size 4 Body Wt"><!-- 20 -->
+							<Label  text="size 4 Body Wt" />
+							<t:template>
+								<Input value="{TabModel>size4BodyWt}" liveChange="onNumberInputLiveChange" />
+							</t:template>
+						</t:Column>                         
+					
+					</t:columns>
+					
+				</t:Table>
+				<Toolbar class="footerBar" design="Auto" >				
+
+					<Button text="Download Template" icon="sap-icon://download" press="onDownload" type="Emphasized" class="sapUiTinyMargin" />
+					<ToolbarSpacer />
+
+					<Button text="Save" press="onSaveRows" type="Emphasized" class="sapUiTinyMargin" />
+					
+				</Toolbar>
+
+                </IconTabFilter>
+
+				<IconTabFilter	text="Long Text"
+								key="longText"
+								tooltip="Long Text"
+								icon="sap-icon://detail-more"
+								iconColor="Critical">
+					
+							<t:Table enableBusyIndicator="true" threshold="100"  rowSelectionChange="onRowSelect" rows="{longTextModel>/Datass}"
+								     selectionBehavior="Row" selectionMode="Multi" id="idMictable" enableSelectAll="true"
+									 rowMode="Fixed" width="100%"  >
+								<t:extension>
+									<OverflowToolbar style="Clear">									
+										<Title  text=" Long Text"  />	
+										<ToolbarSpacer />
+
+										<u:FileUploader
+											id="fileUploaderLongText"
+											name="excelUploader"
+											tooltip="Upload your file to the table"
+											change="onLongTextUploadChange"
+											fileType="xlsx,xls"
+											placeholder="Choose Excel file..."
+											style="Emphasized"/>
+						
+										<Button text="Upload" press="onLongTextUploadPress" type="Accept" icon="sap-icon://upload" />
+										<Button text="Add" icon="sap-icon://add" press="onLongTextAddPress" />
+
+										<Button text="Delete" icon="sap-icon://delete" press="onLongTextDeleteRow" />
+									</OverflowToolbar>
+								</t:extension>
+
+								<t:columns>
+
+									<t:Column width="15%" sortProperty="createtime" >
+										<Label text="Plant" />
+										<t:template>
+											<ComboBox id="plantComboBoxId" placeholder="Select Plant..." selectedKey="{longTextModel>InspectionSpecificationPlant}">
+												<items> 
+													<core:Item text="1100" key="1100" />
+													<core:Item text="1200" key="1200" />
+												</items>
+											</ComboBox>
+										</t:template>
+									</t:Column>
+									
+									<t:Column width="20%" >
+										<Label text="Mic No" />
+										<t:template>
+											<Input value="{longTextModel>Micno}" showValueHelp="true" valueHelpRequest="onMicNoValueHelpRequest"
+												suggest=".OnSuggest_User_MicNo" suggestionItems="{ path: 'ZSB_NCLCOA_LONGTEXT>/ZC_NCL_MICNO_F4' }"
+                                        		showSuggestion="true" suggestionItemSelected=".ondocumentsuggestselected_MicNo" >
+												<suggestionItems>
+													<core:Item key="{ZSB_NCLCOA_LONGTEXT>InspectionSpecification}" text="{ZSB_NCLCOA_LONGTEXT>InspectionSpecification}" />
+												</suggestionItems>
+											</Input>	
+										</t:template>
+									</t:Column>
+
+									<t:Column width="20%" >
+										<Label text="Inspection Method" />
+										<t:template>
+											<Input value="{longTextModel>Inspectionmethod}"  />	
+										</t:template>
+									</t:Column>
+
+									<t:Column>
+										<Label text="Inspection Long Text" />
+										<t:template>
+											<Input value="{longTextModel>Inspectionspeclongtext}" />	
+										</t:template>
+									</t:Column>
+
+								</t:columns>
+							</t:Table>
+							<Toolbar class="footerBar" design="Auto" >
+					
+								<Button text="Download Template" icon="sap-icon://download" press="onLongTextDownload" type="Emphasized" class="sapUiTinyMargin" />
+								<ToolbarSpacer />
+
+								<Button text="Update" press="onLongTextUpdateRows" type="Attention" class="sapUiTinyMargin" />
+
+								<Button text="Save" press="onLongTextSaveRows" type="Emphasized" class="sapUiTinyMargin" />
+								
+							</Toolbar>
+							
+						<!-- </FlexBox> -->
+					
+				</IconTabFilter>
+
+				<IconTabFilter text="Code Group"
+								key="codeGroup"
+								tooltip="Code Group"
+								icon="sap-icon://target-group"
+								iconColor="Contrast">
+					<!-- <FlexBox alignItems="Start" backgroundDesign="Solid" > -->
+
+							<t:Table enableBusyIndicator="true" threshold="100"  rowSelectionChange="onRowSelect" rows="{codeGroupModel>/Datass}"
+								     selectionBehavior="Row" selectionMode="Multi" id="idCodetable" enableSelectAll="true"
+									 rowMode="Fixed" width="100%"   >
+								<t:extension>
+									<OverflowToolbar style="Clear">									
+										<Title  text="Code Group "  />	
+										
+										<ToolbarSpacer />
+
+										<u:FileUploader
+											id="fileUploaderCodeGroup"
+											name="excelUploader"
+											tooltip="Upload your file to the table"
+											change="onCodeGroupUploadChange"
+											fileType="xlsx,xls"
+											placeholder="Choose Excel file..."
+											style="Emphasized"/>
+						
+										<Button text="Upload" press="onCodeGroupUploadPress" type="Accept" icon="sap-icon://upload" />
+										<Button text="Add" icon="sap-icon://add" press="onCodeGroupAddPress" />
+
+										<Button text="Delete" icon="sap-icon://delete" press="onCodeGroupDeleteRow" />
+									</OverflowToolbar>
+								</t:extension>
+
+								<t:columns>
+
+									<t:Column width="20%" sortProperty="createtime" >
+										<Label text="Code Group" />
+										<t:template>
+											<Input id="idCodeGroup" value="{codeGroupModel>CodeGroup}" showValueHelp="true" 
+												   valueHelpRequest=".onCodeGroupValueHelpRequest" suggest=".OnSuggest_User_CodeGroup" 
+												   suggestionItems="{ path: 'ZSB_NCLCOA_CODEGROUP>/ZC_NCLCOA_CODEGRP_F4',sorter: { path: 'CodeGroup' } }"
+                                        		   showSuggestion="true" suggestionItemSelected=".ondocumentsuggestselected_CodeGroup" >
+												<suggestionItems>
+													<core:Item key="{ZSB_NCLCOA_CODEGROUP>Code}" text="{ZSB_NCLCOA_CODEGROUP>Code}" />
+												</suggestionItems>
+											</Input>
+										</t:template>
+									</t:Column>
+									
+									<t:Column width="20%" >
+										<Label text="Code" />
+										<t:template>
+											<Input 	id="idCode" value="{codeGroupModel>Code}" showValueHelp="true" valueHelpRequest=".onCodeValueHelpRequest"  
+													suggest=".OnSuggest_User_Code" suggestionItems="{ path: 'ZSB_NCLCOA_CODEGROUP>/ZC_NCLCOA_CODEGRP_F4',sorter: { path: 'Code' } }"
+                                        		    showSuggestion="true" suggestionItemSelected=".ondocumentsuggestselected_Code"  >							
+												<suggestionItems>
+													<core:Item key="{ZSB_NCLCOA_CODEGROUP>Code}" text="{ZSB_NCLCOA_CODEGROUP>Code}" />
+												</suggestionItems>
+
+											</Input>	
+
+
+										</t:template>
+									</t:Column>
+
+									
+
+									<t:Column>
+										<Label text="Code Short Text" />
+										<t:template>
+											<Input  value="{codeGroupModel>Codeshorttxt}" />	
+										</t:template>
+									</t:Column>
+
+								</t:columns>
+							</t:Table>
+							<Toolbar class="footerBar" design="Auto" >
+					
+								<Button text="Download Template" icon="sap-icon://download" press="onCodeGroupDownload" type="Emphasized" class="sapUiTinyMargin" />
+								<ToolbarSpacer />
+
+								<Button text="Save" press="onCodeGroupSaveRows" type="Emphasized" class="sapUiTinyMargin" />
+								
+							</Toolbar>
+							
+						<!-- </FlexBox> -->
+				</IconTabFilter>
+				
+				
+            </items>
+			
+		</IconTabBar>
+			
+    </Page>
+</mvc:View>

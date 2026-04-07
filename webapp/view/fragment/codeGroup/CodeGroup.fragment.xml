@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
+	<ValueHelpDialog supportMultiselect="false"  title="Code Group." ok=".onCodeGroupValueOkPress" cancel=".onCodeGroupValueCancelPress" 
+					 afterClose=".onCodeGroupValueAfterClose" supportRanges="false" key="CodeGroup" 
+					 descriptionKey=""  >
+		<filterBar>
+			<fb:FilterBar advancedMode="true" search=".onCodeGroupFilterBarSearch" isRunningInValueHelpDialog="true"  >
+				<fb:filterGroupItems>
+
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Code Group" label="Code Group." visibleInFilterBar="true" >
+						<fb:control >
+									<m:Input name="Code Group" showSuggestion="true" showValueHelp="false"
+											 suggestionItems="{ path: 'ZSB_NCLCOA_CODEGROUP>/ZC_NCLCOA_CODEGRP_F4',sorter: { path: 'CodeGroup' }}"> 
+								<core:Item key="{ZSB_NCLCOA_CODEGROUP>CodeGroup}" text="{ZSB_NCLCOA_CODEGROUP>CodeGroup}" />
+							</m:Input>
+						</fb:control>
+					</fb:FilterGroupItem>				
+
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+		
+	</ValueHelpDialog>
+</core:FragmentDefinition> 
