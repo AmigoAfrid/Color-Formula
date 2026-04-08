@@ -2383,78 +2383,104 @@ sap.ui.define([
         },
 
         // UPDATE the SAVED ROW: ---------------------------------------------------------------------------------------------------------------------- 
-        onUpdate: function () {
+       
+        onMasterDataUpdateRows: function () {
+
             var that = this;
             var oTable = this.byId("idtable");
             var aSelectedIndices = oTable.getSelectedIndices();
 
-            if (aSelectedIndices.length !== 1) {
-                MessageBox.warning("Please select a row to update.");
+            if (aSelectedIndices.length === 0) {
+                MessageToast.show("Please select at least one row to update");
                 return;
             }
 
-            var oContext = oTable.getContextByIndex(aSelectedIndices[0]);
-            var oData = oContext.getObject();
+            var oModel = this.getView().getModel("ZSB_YCCODE_1");
+            var aNoIdRows = [];
 
+            //  Get all table data safely
+            var aAllData = [];
+            var aContexts = oTable.getBinding("rows").getContexts();
 
-            if (!oData.color || !oData.color1 || !oData.colorants || !oData.eccno) {
-                MessageBox.warning("Cannot update row with mandatory fields");
-                return;
+            for (var j = 0; j < aContexts.length; j++) {
+                aAllData.push(aContexts[j].getObject());
             }
 
+            for (var i = 0; i < aSelectedIndices.length; i++) {
 
-            if (!oData.SapUid) {
-                MessageBox.warning("Cannot update unsaved row. Please save it first");
-                return;
-            }
+                var oContext = oTable.getContextByIndex(aSelectedIndices[i]);
+                var oData = oContext.getObject();
 
-
-            MessageBox.confirm("Are you sure you want to update this row?", {
-                onClose: function (oAction) {
-                    if (oAction === MessageBox.Action.OK) {
-                        var UpdatedPayload = {
-                            SapUid: oData.SapUid,
-                            color: oData.color,
-                            color1: oData.color1,
-                            colorants: oData.colorants,
-                            eccno: parseInt(oData.eccno, 10),
-                            cino: String(oData.cino),
-                            percofcolor: that.formatDecimal(oData.percofcolor, 3),
-                            size00CaPwt: that.formatDecimal(oData.size00CaPwt, 3),
-                            size00BodyWt: that.formatDecimal(oData.size00BodyWt, 3),
-                            size0elCapWt: that.formatDecimal(oData.size0elCapWt, 3),
-                            size0elBodyWt: that.formatDecimal(oData.size0elBodyWt, 3),
-                            size0CapWt: that.formatDecimal(oData.size0CapWt, 3),
-                            size0BodyWt: that.formatDecimal(oData.size0BodyWt, 3),
-                            size1CapWt: that.formatDecimal(oData.size1CapWt, 3),
-                            size1BodyWt: that.formatDecimal(oData.size1BodyWt, 3),
-                            size2CapWt: that.formatDecimal(oData.size2CapWt, 3),
-                            size2BodyWt: that.formatDecimal(oData.size2BodyWt, 3),
-                            size3CapWt: that.formatDecimal(oData.size3CapWt, 3),
-                            size3BodyWt: that.formatDecimal(oData.size3BodyWt, 3),
-                            size4CapWt: that.formatDecimal(oData.size4CapWt, 3),
-                            size4BodyWt: that.formatDecimal(oData.size4BodyWt, 3)
-                        };
-
-                        var sPath = "/ZCDS_YCCODE_1('" + oData.SapUid + "')";
-                        var oModel = that.getView().getModel("ZSB_YCCODE_1");
-
-                        oModel.update(sPath, UpdatedPayload, {
-                            success: function () {
-                                MessageBox.information("Row updated successfully");
-                                that._reloadTableData();
-                            },
-                            error: function () {
-                                MessageBox.error("Failed to update the row");
-                                that._reloadTableData();
-                            }
-                        });
-                    } else {
-
-                        MessageToast.show("Update cancelled.");
-                    }
+                if (!oData.SapUid) {
+                    aNoIdRows.push(aSelectedIndices[i] + 1);
+                    continue;
                 }
-            });
+
+                if (!oData.color || !oData.color1 || !oData.colorants || !oData.eccno) {
+                    MessageBox.warning("Cannot update row without mandatory fields");
+                    return;
+                }
+
+                //  Duplicate check
+                var bDuplicate = aAllData.some(function (item) {
+                    return item.SapUid !== oData.SapUid &&
+                        item.color === oData.color &&
+                        item.color1 === oData.color1 &&
+                        item.colorants === oData.colorants &&
+                        item.eccno === parseInt(oData.eccno,10);
+
+                });
+
+                if (bDuplicate) {
+                    MessageBox.error(
+                        "Duplicate entry not allowed for Color '" +
+                        oData.color +
+                        "' and color1 '" +
+                        oData.color1 + "'."
+                    );
+                    continue;
+                }
+                var sPath = "/ZCDS_YCCODE_1('" + oData.SapUid + "')";
+
+                var oPayload = {
+                    SapUid: oData.SapUid,
+                    color: oData.color,
+                    color1: oData.color1,
+                    colorants: oData.colorants,
+                    eccno: parseInt(oData.eccno, 10),
+                    cino: String(oData.cino),
+                    percofcolor: that.formatDecimal(oData.percofcolor, 3),
+                    size00CaPwt: that.formatDecimal(oData.size00CaPwt, 3),
+                    size00BodyWt: that.formatDecimal(oData.size00BodyWt, 3),
+                    size0elCapWt: that.formatDecimal(oData.size0elCapWt, 3),
+                    size0elBodyWt: that.formatDecimal(oData.size0elBodyWt, 3),
+                    size0CapWt: that.formatDecimal(oData.size0CapWt, 3),
+                    size0BodyWt: that.formatDecimal(oData.size0BodyWt, 3),
+                    size1CapWt: that.formatDecimal(oData.size1CapWt, 3),
+                    size1BodyWt: that.formatDecimal(oData.size1BodyWt, 3),
+                    size2CapWt: that.formatDecimal(oData.size2CapWt, 3),
+                    size2BodyWt: that.formatDecimal(oData.size2BodyWt, 3),
+                    size3CapWt: that.formatDecimal(oData.size3CapWt, 3),
+                    size3BodyWt: that.formatDecimal(oData.size3BodyWt, 3),
+                    size4CapWt: that.formatDecimal(oData.size4CapWt, 3),
+                    size4BodyWt: that.formatDecimal(oData.size4BodyWt, 3)
+                };
+
+                oModel.update(sPath, oPayload, {
+                    success: function () {
+                        MessageToast.show("Row updated successfully.");
+                        that._reloadTableData();
+                        oTable.clearSelection();
+                    },
+                    error: function () {
+                        MessageToast.show("Row update failed.");
+                    }
+                });
+            }
+
+            if (aNoIdRows.length > 0) {
+                MessageBox.warning("The selected row is not saved, can't update.");
+            }
         },
 
 
@@ -3173,7 +3199,7 @@ sap.ui.define([
             }
 
             if (aNoIdRows.length > 0) {
-                MessageBox.warning("Row(s) " + aNoIdRows.join(", ") + " have no ID. Skipped.");
+                MessageBox.warning("Row(s) " + aNoIdRows.join(", ") + " have no ID. can't update.");
             }
         },
         // onLongTextDeleteRow: function () {
@@ -4426,6 +4452,85 @@ sap.ui.define([
             });
         },
 
+        onCodeGroupUpdateRows: function () {
+
+            var that = this;
+            var oTable = this.byId("idCodetable");
+            var aSelectedIndices = oTable.getSelectedIndices();
+
+            if (aSelectedIndices.length === 0) {
+                MessageToast.show("Please select at least one row to update");
+                return;
+            }
+
+            var oModel = this.getView().getModel("ZSB_NCLCOA_CODEGROUP");
+            var aNoIdRows = [];
+
+            //  Get all table data safely
+            var aAllData = [];
+            var aContexts = oTable.getBinding("rows").getContexts();
+
+            for (var j = 0; j < aContexts.length; j++) {
+                aAllData.push(aContexts[j].getObject());
+            }
+
+            for (var i = 0; i < aSelectedIndices.length; i++) {
+
+                var oContext = oTable.getContextByIndex(aSelectedIndices[i]);
+                var oData = oContext.getObject();
+
+                if (!oData.Id) {
+                    aNoIdRows.push(aSelectedIndices[i] + 1);
+                    continue;
+                }
+
+                if (!oData.Code || !oData.CodeGroup ||
+                    !oData.Codeshorttxt) {
+                    MessageBox.warning("All fields are mandatory for update.");
+                    return;
+                }
+
+                // ✅ Duplicate check
+                var bDuplicate = aAllData.some(function (item) {
+                    return item.Id !== oData.Id &&
+                        item.Code === oData.Code &&
+                        item.CodeGroup === oData.CodeGroup;
+                });
+
+                if (bDuplicate) {
+                    MessageBox.error(
+                        "Duplicate entry not allowed for Code '" +
+                        oData.Code +
+                        "' and CodeGroup '" +
+                        oData.CodeGroup + "'."
+                    );
+                    continue;
+                }
+
+                var sPath = "/ZC_NCLCOA_CODEGRP('" + oData.Id + "')";
+
+                var oPayload = {
+                    Code: oData.Code,
+                    CodeGroup: oData.CodeGroup,
+                    Codeshorttxt: oData.Codeshorttxt
+                };
+
+                oModel.update(sPath, oPayload, {
+                    success: function () {
+                        MessageToast.show("Row updated successfully.");
+                        that._reloadCodeGroupTableData();
+                        oTable.clearSelection();
+                    },
+                    error: function () {
+                        MessageToast.show("Row update failed.");
+                    }
+                });
+            }
+
+            if (aNoIdRows.length > 0) {
+                MessageBox.warning("Row(s) " + aNoIdRows.join(", ") + " have no ID. can't update.");
+            }
+        },
         // onCodeGroupSaveRows: async function () {
 
         //     var that = this;
