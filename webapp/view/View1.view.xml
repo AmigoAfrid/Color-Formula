@@ -347,6 +347,8 @@
 					<Button text="Download Template" icon="sap-icon://download" press="onDownload" type="Emphasized" class="sapUiTinyMargin" />
 					<ToolbarSpacer />
 
+					<Button text="Update" press="onMasterDataUpdateRows" type="Attention" class="sapUiTinyMargin" />
+
 					<Button text="Save" press="onSaveRows" type="Emphasized" class="sapUiTinyMargin" />
 					
 				</Toolbar>
@@ -475,7 +477,7 @@
 
 								<t:columns>
 
-									<t:Column width="20%" sortProperty="createtime" >
+									<t:Column width="20%" sortProperty="createtime" filterProperty="CodeGroup" >
 										<Label text="Code Group" />
 										<t:template>
 											<Input id="idCodeGroup" value="{codeGroupModel>CodeGroup}" showValueHelp="true" 
@@ -520,6 +522,7 @@
 					
 								<Button text="Download Template" icon="sap-icon://download" press="onCodeGroupDownload" type="Emphasized" class="sapUiTinyMargin" />
 								<ToolbarSpacer />
+								<Button text="Update" press="onCodeGroupUpdateRows" type="Attention" class="sapUiTinyMargin" />
 
 								<Button text="Save" press="onCodeGroupSaveRows" type="Emphasized" class="sapUiTinyMargin" />
 								
