@@ -179,6 +179,9 @@
 							<ToolbarSpacer width="30rem"/>  	
 							<!-- <Button text="Update" icon="sap-icon://arrow-right" press="onUpdate" /> -->
 							<ToolbarSpacer/>
+
+							<Button text="Add" icon="sap-icon://add" press="OnRowAdd" />
+                   			<Button text="Delete"  id="idmultidelete" icon="sap-icon://delete" press="onDeleteRow" />
 							
 							<u:FileUploader
 								id="fileUploader"
@@ -187,13 +190,13 @@
 								change="onColorFormulaUploadChange"
 								fileType="xlsx,xls"
 								placeholder="Choose Excel file..."
-								style="Emphasized"/>
+								style="Emphasized" />
 						
 							<Button text="Upload" press="onColorFormulaUploadPress" type="Accept" icon="sap-icon://upload" />
+							<Button icon="sap-icon://excel-attachment" press="onDownload" type="Emphasized" class="sapUiTinyMargin" />
 							
 
-							<Button text="Add" icon="sap-icon://add" press="OnRowAdd" />
-                   			<Button text="Delete"  id="idmultidelete" icon="sap-icon://delete" press="onDeleteRow" />
+							
 
 						</OverflowToolbar>
 					</t:extension>
@@ -342,12 +345,12 @@
 					</t:columns>
 					
 				</t:Table>
-				<Toolbar class="footerBar" design="Auto" >				
-
-					<Button text="Download Template" icon="sap-icon://download" press="onDownload" type="Emphasized" class="sapUiTinyMargin" />
-					<ToolbarSpacer />
+				<Toolbar class="footerBar" design="Auto" >			
 
 					<Button text="Update" press="onMasterDataUpdateRows" type="Attention" class="sapUiTinyMargin" />
+					
+					<ToolbarSpacer />
+
 
 					<Button text="Save" press="onSaveRows" type="Emphasized" class="sapUiTinyMargin" />
 					
@@ -369,6 +372,8 @@
 										<Title  text=" Long Text"  />	
 										<ToolbarSpacer />
 
+										<Button text="Add" icon="sap-icon://add" press="onLongTextAddPress" />
+										<Button text="Delete" icon="sap-icon://delete" press="onLongTextDeleteRow" />
 										<u:FileUploader
 											id="fileUploaderLongText"
 											name="excelUploader"
@@ -379,9 +384,8 @@
 											style="Emphasized"/>
 						
 										<Button text="Upload" press="onLongTextUploadPress" type="Accept" icon="sap-icon://upload" />
-										<Button text="Add" icon="sap-icon://add" press="onLongTextAddPress" />
-
-										<Button text="Delete" icon="sap-icon://delete" press="onLongTextDeleteRow" />
+										<Button icon="sap-icon://excel-attachment" press="onLongTextDownload" type="Emphasized" class="sapUiTinyMargin" />
+										
 									</OverflowToolbar>
 								</t:extension>
 
@@ -429,11 +433,9 @@
 								</t:columns>
 							</t:Table>
 							<Toolbar class="footerBar" design="Auto" >
-					
-								<Button text="Download Template" icon="sap-icon://download" press="onLongTextDownload" type="Emphasized" class="sapUiTinyMargin" />
+								<Button text="Update" press="onLongTextUpdateRows" type="Attention" class="sapUiTinyMargin" />					
 								<ToolbarSpacer />
 
-								<Button text="Update" press="onLongTextUpdateRows" type="Attention" class="sapUiTinyMargin" />
 
 								<Button text="Save" press="onLongTextSaveRows" type="Emphasized" class="sapUiTinyMargin" />
 								
@@ -458,7 +460,9 @@
 										<Title  text="Code Group "  />	
 										
 										<ToolbarSpacer />
-
+										
+										<Button text="Add" icon="sap-icon://add" press="onCodeGroupAddPress" />
+										<Button text="Delete" icon="sap-icon://delete" press="onCodeGroupDeleteRow" />
 										<u:FileUploader
 											id="fileUploaderCodeGroup"
 											name="excelUploader"
@@ -467,11 +471,10 @@
 											fileType="xlsx,xls"
 											placeholder="Choose Excel file..."
 											style="Emphasized"/>
-						
-										<Button text="Upload" press="onCodeGroupUploadPress" type="Accept" icon="sap-icon://upload" />
-										<Button text="Add" icon="sap-icon://add" press="onCodeGroupAddPress" />
 
-										<Button text="Delete" icon="sap-icon://delete" press="onCodeGroupDeleteRow" />
+										<Button text="Upload" press="onCodeGroupUploadPress" type="Accept" icon="sap-icon://upload" />
+										<Button icon="sap-icon://excel-attachment" press="onCodeGroupDownload" type="Emphasized" class="sapUiTinyMargin" />
+										
 									</OverflowToolbar>
 								</t:extension>
 
@@ -485,7 +488,7 @@
 												   suggestionItems="{ path: 'ZSB_NCLCOA_CODEGROUP>/ZC_NCLCOA_CODEGRP_F4',sorter: { path: 'CodeGroup' } }"
                                         		   showSuggestion="true" suggestionItemSelected=".ondocumentsuggestselected_CodeGroup" >
 												<suggestionItems>
-													<core:Item key="{ZSB_NCLCOA_CODEGROUP>Code}" text="{ZSB_NCLCOA_CODEGROUP>Code}" />
+													<core:Item key="{ZSB_NCLCOA_CODEGROUP>CodeGroup}" text="{ZSB_NCLCOA_CODEGROUP>CodeGroup}" />
 												</suggestionItems>
 											</Input>
 										</t:template>
@@ -519,10 +522,8 @@
 								</t:columns>
 							</t:Table>
 							<Toolbar class="footerBar" design="Auto" >
-					
-								<Button text="Download Template" icon="sap-icon://download" press="onCodeGroupDownload" type="Emphasized" class="sapUiTinyMargin" />
-								<ToolbarSpacer />
 								<Button text="Update" press="onCodeGroupUpdateRows" type="Attention" class="sapUiTinyMargin" />
+								<ToolbarSpacer />
 
 								<Button text="Save" press="onCodeGroupSaveRows" type="Emphasized" class="sapUiTinyMargin" />
 								
